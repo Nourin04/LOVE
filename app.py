@@ -124,15 +124,17 @@ try:
 except Exception as e:
     st.error(f"Error loading image: {e}")
 
-# Set background image using CSS
+# Use CSS to set the background image
 st.markdown(
     f"""
     <style>
     .stApp {{
         background-image: url({background_image});
-        background-size: cover;
-        background-position: center;
+        background-size: cover;  /* Ensures the image covers the entire background */
+        background-position: center center;  /* Centers the image */
+        background-attachment: fixed;  /* Keeps the image fixed while scrolling */
         background-repeat: no-repeat;
+        min-height: 100vh;  /* Ensures the background covers the full height of the screen */
     }}
     </style>
     """, 
