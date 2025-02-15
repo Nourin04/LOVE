@@ -153,13 +153,14 @@ def daily_love_challenge():
 
 # Sidebar: Display Chatbot
 # Function: Chatbot Response
-# Function: AI Love Advice Chatbot (using Falcon model for dynamic response)
+# Function to get chatbot response
 def chatbot_response(user_input):
-    api_url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
+    if not api_key:
+        return "API key not set, cannot get response."
     
+    api_url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
     headers = {"Authorization": f"Bearer {api_key}"}
     prompt = f"Respond to the following user input as a chatbot. The input is: '{user_input}'"
-
     payload = {
         "inputs": prompt,
         "parameters": {
@@ -168,18 +169,14 @@ def chatbot_response(user_input):
             "top_k": 50
         }
     }
-
+    
     try:
         response = requests.post(api_url, headers=headers, json=payload, timeout=10)
-        response.raise_for_status()  # Raise error for non-2xx status codes
+        response.raise_for_status()  # Check if the response is successful
         bot_reply = response.json()[0]["generated_text"]
         return bot_reply
-    except requests.exceptions.Timeout:
-        return "Error: Request timed out. Please try again later."
     except requests.exceptions.RequestException as e:
         return f"Error: An issue occurred while contacting the model ({str(e)})."
-    except (KeyError, IndexError):
-        return "Error: Unexpected response format from the AI model."
         
 # Sidebar: Display Chatbot
 st.sidebar.header("Love Chatbot 🤖")
