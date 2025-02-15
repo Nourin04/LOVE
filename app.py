@@ -25,8 +25,8 @@ def generate_ai_love_story(names, place, event, memory):
     payload = {
         "inputs": prompt, 
         "parameters": {
-            "max_length": 500, 
-            "temperature": 0.7, 
+            "max_length": 200, 
+            "temperature": 0.5, 
             "top_k": 50
         }
     }
