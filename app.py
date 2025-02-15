@@ -115,16 +115,8 @@ st.markdown("#### *Every love story deserves to be told.*")
 from PIL import Image
 
 # Path to the image in your repo
-background_image = "bgimage.jpg"  # Adjust this if the image is in a different folder
+background_image = " https://www.pexels.com/photo/three-red-heart-balloons-704748/"  # Adjust this if the image is in a different folder
 
-# Try loading and displaying the image
-try:
-    img = Image.open(background_image)
-    st.image(img, caption="Background Image Loaded", use_container_width=True)
-except Exception as e:
-    st.error(f"Error loading image: {e}")
-
-# Use CSS to set the background image
 st.markdown(
     f"""
     <style>
@@ -134,7 +126,7 @@ st.markdown(
     }}
 
     .stApp {{
-        background-image: url({background_image});
+        background-image: url({background_image_url});
         background-size: cover;  /* Ensures the image covers the entire background */
         background-position: center center;  /* Ensures the image is centered */
         background-repeat: no-repeat;
@@ -152,7 +144,6 @@ st.markdown(
     """, 
     unsafe_allow_html=True
 )
-
 # Create Tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "Love Score 💕", "Love Advice 💌", "Mini Games 🎮", 
