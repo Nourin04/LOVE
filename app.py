@@ -120,25 +120,17 @@ background_image_url = "https://images.pexels.com/photos/1805416/pexels-photo-18
 st.markdown(
     f"""
     <style>
-    html, body {{
-        height: 100%;
-        margin: 0;
-    }}
-
-    .stApp {{
+    body {{
         background-image: url({background_image_url});
-        background-size: cover;  /* Ensures the image covers the entire background */
-        background-position: center center;  /* Ensures the image is centered */
+        background-size: contain;  /* Avoid stretching by using 'contain' */
+        background-position: center center;
         background-repeat: no-repeat;
-        background-attachment: fixed;  /* Keeps the background fixed when scrolling */
-        min-height: 100vh;  /* Ensures the height of the background takes up the full viewport */
-        width: 100%;  /* Ensures the width of the background is 100% */
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
     }}
-
-    /* Ensure the content is above the background */
-    .main {{
-        position: relative;
-        z-index: 10;
+    .stApp {{
+        background: transparent;
     }}
     </style>
     """, 
