@@ -371,15 +371,27 @@ st.markdown(
 st.markdown(
     """
     <style>
-    /* Make the tab headers bold and adjust the font size */
-    .css-1lcb2zz {
-        font-size: 20px !important;
-        font-weight: bold !important;
+    .tabs {
+        display: flex;
+        cursor: pointer;
+        justify-content: space-around;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px;
+        border-bottom: 2px solid #ccc;
+    }
+    .tabs div {
+        padding: 10px;
+    }
+    .tabs div:hover {
+        background-color: #f0f0f0;
+    }
+    .tabs div.active {
+        border-bottom: 3px solid #00BFFF;
+        color: #00BFFF;
     }
     </style>
     """, unsafe_allow_html=True
 )
-
-
 
 
