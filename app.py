@@ -28,12 +28,12 @@ def generate_ai_love_story(names, place, event, memory):
         return f"Error: Unable to generate story. ({response.status_code})"
 
 # Streamlit UI
-st.title("💖 AI Love Story Generator")
-name1 = st.text_input("Enter Your Name:")
-name2 = st.text_input("Enter Partner's Name:")
-place = st.text_input("Where did you meet?")
-event = st.text_input("A special event in your relationship:")
-memory = st.text_input("A favorite shared memory:")
+name1 = st.text_input("Enter Your Name:", key="name1")
+name2 = st.text_input("Enter Partner's Name:", key="name2")
+place = st.text_input("Where did you meet?", key="place")
+event = st.text_input("A special event in your relationship:", key="event")
+memory = st.text_input("A favorite shared memory:", key="memory")
+
 
 if st.button("Generate Love Story ❤️"):
     if name1 and name2 and place and event and memory:
