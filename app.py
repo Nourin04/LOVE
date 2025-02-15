@@ -277,47 +277,54 @@ with tab4:
 
 # ---- TAB 5: Love Story Compatibility ----
 
-# Define love story questions
-story_questions = [
-    ("Do you believe in love at first sight?", ["Yes", "No"]),
-    ("How do you feel about long-distance relationships?", ["Works for me", "Not my thing"]),
-    ("What’s more important in a relationship?", ["Trust", "Passion"]),
-    ("How do you celebrate anniversaries?", ["Big celebrations", "Small, intimate moments"]),
-    ("How do you handle challenges in your relationship?", ["Together, as a team", "It’s tough, but we try"]),
-]
+# ---- TAB 5: Love Story Compatibility ----
+with tab5:
+    st.header("💖 Love Story Compatibility")
 
-    # Create a tab for Love Story Compatibility
-    with st.container():
-        st.header("💖 Love Story Compatibility")
-        st.markdown(
-        """
-        Find out how compatible you are with your partner based on your love story.
-        Answer the following questions and let's calculate your compatibility score!
-        """
-    )
-
-    # Initialize lists to collect answers
-    answers1_story = []
-    answers2_story = []
-
+    # Define love story questions for "His" section
+    his_questions = [
+        ("Do you believe in love at first sight?", ["Yes", "No"]),
+        ("How do you feel about long-distance relationships?", ["Works for me", "Not my thing"]),
+        ("What’s more important in a relationship?", ["Trust", "Fun"]),
+        ("How would you describe your ideal partner?", ["Adventurous", "Comfortable"]),
+        ("How do you feel about surprises in love?", ["Love them", "Prefer predictability"]),
+    ]
+    
     # Collect answers for "His" section
-    st.subheader("His Answers:")
-    for q, options in story_questions:
-        answer1 = st.radio(q, options, key=f"story_q1_{q}")
-        answers1_story.append(answer1)
+    his_answers = []
+    st.subheader("👨‍💼 His Compatibility")
+    for q, options in his_questions:
+        answer = st.radio(q, options, key=f"his_{q}")
+        his_answers.append(answer)
 
+    # Define love story questions for "Her" section
+    her_questions = [
+        ("Do you believe in love at first sight?", ["Yes", "No"]),
+        ("How do you feel about long-distance relationships?", ["Works for me", "Not my thing"]),
+        ("What’s more important in a relationship?", ["Trust", "Fun"]),
+        ("How would you describe your ideal partner?", ["Adventurous", "Comfortable"]),
+        ("How do you feel about surprises in love?", ["Love them", "Prefer predictability"]),
+    ]
+    
     # Collect answers for "Her" section
-    st.subheader("Her Answers:")
-    for q, options in story_questions:
-        answer2 = st.radio(q, options, key=f"story_q2_{q}")
-        answers2_story.append(answer2)
+    her_answers = []
+    st.subheader("👩‍💼 Her Compatibility")
+    for q, options in her_questions:
+        answer = st.radio(q, options, key=f"her_{q}")
+        her_answers.append(answer)
 
-    # Button to calculate compatibility score
-    if st.button("Calculate Love Story Compatibility 💕", key="story_compat_btn"):
-        # Calculate compatibility score based on answers (simplified for demonstration)
-        story_compat_score = sum([1 for ans1, ans2 in zip(answers1_story, answers2_story) if ans1 == ans2])
-        st.success(f"Your love story compatibility score is: {story_compat_score * 20}%!")
-
+    if st.button("Calculate Love Story Compatibility 💘", key="story_compatibility_btn"):
+        # Calculate compatibility for "His" section (simplified)
+        his_compatibility_score = sum([1 for ans in his_answers if ans == "Yes" or ans == "Works for me"])
+        # Calculate compatibility for "Her" section (simplified)
+        her_compatibility_score = sum([1 for ans in her_answers if ans == "Yes" or ans == "Works for me"])
+        
+        # Combine both scores for a final compatibility score
+        total_compatibility_score = (his_compatibility_score + her_compatibility_score) * 10
+        
+        st.success(f"His Compatibility Score: {his_compatibility_score * 20}%")
+        st.success(f"Her Compatibility Score: {her_compatibility_score * 20}%")
+        st.success(f"Total Love Story Compatibility: {total_compatibility_score}%")
 
 # ---- TAB 6: Love Story Generator ----
 with tab6:
