@@ -152,16 +152,6 @@ def daily_love_challenge():
     return random.choice(challenges)
 
 # Sidebar: Display Chatbot
-# Sidebar: Display Chatbot
-st.sidebar.header("Love Chatbot 🤖")
-user_input = st.sidebar.text_input("Chat with the Love Chatbot...", key="sidebar_chatbot_input")
-
-if st.sidebar.button("Send Message 💬", key="sidebar_chatbot_btn"):
-    if user_input:
-        response = chatbot_response(user_input)
-        st.sidebar.text_area("Chatbot Response", response, height=200)
-    else:
-        st.sidebar.text_area("Chatbot Response", "Please enter a message to start chatting!", height=200)
 # Function: Chatbot Response
 def chatbot_response(user_input):
     api_url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
@@ -190,3 +180,14 @@ def chatbot_response(user_input):
         return f"Error: An issue occurred while contacting the model ({str(e)})."
     except (KeyError, IndexError):
         return "Error: Unexpected response format from the AI model."
+
+# Sidebar: Display Chatbot
+st.sidebar.header("Love Chatbot 🤖")
+user_input = st.sidebar.text_input("Chat with the Love Chatbot...", key="sidebar_chatbot_input")
+
+if st.sidebar.button("Send Message 💬", key="sidebar_chatbot_btn"):
+    if user_input:
+        response = chatbot_response(user_input)
+        st.sidebar.text_area("Chatbot Response", response, height=200)
+    else:
+        st.sidebar.text_area("Chatbot Response", "Please enter a message to start chatting!", height=200)
