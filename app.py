@@ -111,6 +111,23 @@ def daily_love_challenge():
 st.title("💖✨  HeartTales : Where Love Stories Begin ✨💖")
 st.markdown("#### *Every love story deserves to be told.*")
 
+# Set the background image URL (local or from the web)
+background_image = "bgimage.jpg"  # Replace with your image URL or path
+
+# Use CSS to set the background image
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url({background_image});
+        background-size: cover;
+        background-position: center;
+    }}
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
+
 # Create Tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "Love Score 💕", "Love Advice 💌", "Mini Games 🎮", 
