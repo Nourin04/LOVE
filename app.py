@@ -117,7 +117,7 @@ with st.container():
     st.header("📷 AI Photo Compatibility Analysis")
     uploaded_file = st.file_uploader("Upload a couple's photo", type=["jpg", "png"])
     if uploaded_file:
-        st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+        st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
         st.success(analyze_photo(uploaded_file))
 
 # ---- Container 6: Chat Sentiment Analysis ----
