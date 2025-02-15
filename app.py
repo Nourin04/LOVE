@@ -3,6 +3,8 @@ import random
 import os
 import requests
 from textblob import TextBlob
+from transformers import AutoTokenizer
+
 
 # Get Hugging Face API key from environment variable
 API_KEY = os.getenv("HUGGINGFACE_API_KEY")
