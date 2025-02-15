@@ -112,10 +112,19 @@ st.title("💖✨  HeartTales : Where Love Stories Begin ✨💖")
 st.markdown("#### *Every love story deserves to be told.*")
 
 # Set the background image URL (local or from the web)
-# Set the background image URL (online image)
-background_image = "bgimage.jpg"  # Replace with your image URL
+from PIL import Image
 
-# Use CSS to set the background image
+# Path to the image in your repo
+background_image = "bgimage.jpg"  # Adjust this if the image is in a different folder
+
+# Try loading and displaying the image
+try:
+    img = Image.open(background_image)
+    st.image(img, caption="Background Image Loaded", use_column_width=True)
+except Exception as e:
+    st.error(f"Error loading image: {e}")
+
+# Set background image using CSS
 st.markdown(
     f"""
     <style>
