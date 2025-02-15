@@ -128,14 +128,25 @@ except Exception as e:
 st.markdown(
     f"""
     <style>
+    html, body {{
+        height: 100%;
+        margin: 0;
+    }}
+
     .stApp {{
         background-image: url({background_image});
-        background-size: 100% 100%;  /* Stretches the image to fill the entire background */
+        background-size: cover;  /* Ensures the image covers the entire background */
         background-position: center center;  /* Ensures the image is centered */
         background-repeat: no-repeat;
         background-attachment: fixed;  /* Keeps the background fixed when scrolling */
-        height: 100vh;  /* Ensures the height of the background takes up the full viewport */
+        min-height: 100vh;  /* Ensures the height of the background takes up the full viewport */
         width: 100%;  /* Ensures the width of the background is 100% */
+    }}
+
+    /* Ensure the content is above the background */
+    .main {{
+        position: relative;
+        z-index: 10;
     }}
     </style>
     """, 
