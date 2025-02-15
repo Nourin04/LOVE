@@ -8,11 +8,15 @@ from textblob import TextBlob
 API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
 # Function: Generate AI Love Story using Hugging Face API
+import streamlit as st
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+# Load the AI Love Story Generator Model
 def generate_ai_love_story(names, place, event, memory):
     api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
-    
-    tokenizer = AutoTokenizer.from_pretrained("facebook/opt-1.3b", use_auth_token=api_key)
-    model = AutoModelForCausalLM.from_pretrained("facebook/opt-1.3b", use_auth_token=api_key)
+
+    tokenizer = AutoTokenizer.from_pretrained("facebook/opt-1.3b", token=api_key)
+    model = AutoModelForCausalLM.from_pretrained("facebook/opt-1.3b", token=api_key)
 
     prompt = (f"Write a romantic love story about {names}. "
               f"They met at {place}, and their most memorable moment was {memory}. "
@@ -24,6 +28,7 @@ def generate_ai_love_story(names, place, event, memory):
     story = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
     return story
+
 
 # Function: Love Compatibility Score
 def calculate_love(name1, name2, birth1, birth2):
