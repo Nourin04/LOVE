@@ -368,6 +368,17 @@ st.markdown(
     </style>
     """, unsafe_allow_html=True
 )
+st.markdown(
+    """
+    <style>
+    /* Make the tab headers bold and adjust the font size */
+    .css-1lcb2zz {
+        font-size: 20px !important;
+        font-weight: bold !important;
+    }
+    </style>
+    """, unsafe_allow_html=True
+)
 
 
 
