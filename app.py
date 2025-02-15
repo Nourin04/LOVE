@@ -53,20 +53,53 @@ def calculate_love(name1, name2, birth1, birth2):
 # Function: AI Love Advice Chatbot
 def get_love_advice():
     advice_list = [
-        "True love is about growing together. ❤️",
-        "Trust, communication, and fun—make love last forever! 💕",
-        "Surprise your partner with a small, meaningful gesture today. 🌹",
-        "Never stop dating your partner, even after years together! 🎉",
-    ]
+    "True love is about growing together. ❤️",
+    "Trust, communication, and fun—make love last forever! 💕",
+    "Surprise your partner with a small, meaningful gesture today. 🌹",
+    "Never stop dating your partner, even after years together! 🎉",
+    "A simple 'I love you' can make all the difference. 💖",
+    "Support each other's dreams and ambitions. Together, you're unstoppable! 🌟",
+    "Love is patient, love is kind—never forget the little things that matter. 💫",
+    "Appreciate your partner for the unique person they are. ✨",
+    "Sometimes the best way to show love is through listening. 👂💬",
+    "Create memories together that will last a lifetime. 📸",
+    "Give your partner the space to grow while remaining their biggest supporter. 🌱",
+    "Cherish the quiet moments, they are just as precious as the loud ones. 💕",
+    "Laughter is the best glue to hold a relationship together. 😂",
+    "Compromise is the key to a happy relationship—meet each other halfway. 🤝",
+    "Sometimes, the best thing you can do for your relationship is to simply be present. 🕰️",
+    "Forgiveness is a powerful act of love—don’t hold onto grudges. 💞",
+    "A healthy relationship thrives on honesty, trust, and mutual respect. 🔑",
+    "Don’t be afraid to express your feelings, vulnerability is a strength. 💪💌",
+    "Love is not just a feeling, it's an action you show every day. 💘",
+    "Go on adventures together, and create memories that make your bond unbreakable. 🌍"
+]
+
     return random.choice(advice_list)
 
 # Function: Mini Games for Couples
 def get_love_game():
     questions = [
-        "Would you rather go on a romantic beach date or a cozy movie night? 🍿🏖️",
-        "Would you rather receive love letters or surprise gifts? 💌🎁",
-        "Would you rather cook together or dance together? 🍽️💃"
-    ]
+    "Would you rather go on a romantic beach date or a cozy movie night? 🍿🏖️",
+    "Would you rather receive love letters or surprise gifts? 💌🎁",
+    "Would you rather cook together or dance together? 🍽️💃",
+    "Would you rather have breakfast in bed or a candlelight dinner? 🍳🕯️",
+    "Would you rather have a picnic in the park or stargazing on the roof? 🧺🌌",
+    "Would you rather go on a spontaneous road trip or have a planned romantic getaway? 🚗✈️",
+    "Would you rather watch the sunset together or watch the sunrise? 🌅🌄",
+    "Would you rather cuddle on the couch or take a walk hand-in-hand? 🛋️🚶‍♀️",
+    "Would you rather receive a handwritten poem or a love song written just for you? ✍️🎶",
+    "Would you rather take a dance class together or try cooking a new recipe? 💃🍝",
+    "Would you rather spend a day at the spa or a day hiking in nature? 💆‍♀️🏞️",
+    "Would you rather have a quiet night in or go out for a night of fun? 🏠🎉",
+    "Would you rather surprise your partner with a thoughtful gesture or a romantic date night? 🎁🌹",
+    "Would you rather have a long-distance relationship or a close relationship with everyday moments? 📱💑",
+    "Would you rather make each other breakfast every Sunday or dinner every Friday? 🍳🍴",
+    "Would you rather travel to a country you've both never been to or revisit a place you both love? 🌍✈️",
+    "Would you rather share a passionate kiss under the rain or on top of a mountain? 💋⛰️",
+    "Would you rather spend a day volunteering together or take a weekend trip to explore a new city? 🌍🤝"
+]
+
     return random.choice(questions)
 
 # Function: Text Sentiment Analysis
@@ -96,11 +129,26 @@ def zodiac_match(zodiac1, zodiac2):
 # Function: Daily Love Challenge
 def daily_love_challenge():
     challenges = [
-        "Send your partner a cute voice note today. 🎙️💌",
-        "Write a small love note and hide it in their bag. 📝💖",
-        "Cook their favorite dish for dinner tonight. 🍽️💞",
-        "Plan a surprise date—could be a movie night or a simple walk! 🎬🌙"
-    ]
+    "Send your partner a cute voice note today. 🎙️💌",
+    "Write a small love note and hide it in their bag. 📝💖",
+    "Cook their favorite dish for dinner tonight. 🍽️💞",
+    "Plan a surprise date—could be a movie night or a simple walk! 🎬🌙",
+    "Compliment your partner on something you admire about them today. 🌟💬",
+    "Surprise them with their favorite dessert after dinner. 🍰🍓",
+    "Give your partner a heartfelt hug and tell them how much they mean to you. 🤗💘",
+    "Create a playlist of songs that remind you of your relationship and share it with them. 🎶💑",
+    "Leave a sweet message on their mirror for them to find later. ✨💋",
+    "Take a selfie together and make it your phone wallpaper. 📸💖",
+    "Plan a mini adventure for the weekend—something spontaneous and fun! 🗺️🎉",
+    "Share a memory from your past that made you fall in love with them. 🧡📖",
+    "Write a short poem about your relationship and share it with them. ✍️💞",
+    "Take a break from technology and spend uninterrupted quality time together. 📵💑",
+    "Create a small surprise for them to find during the day—a favorite snack, a handwritten note, etc. 🎁❤️",
+    "Give them a little DIY gift that shows how much you care. 🎨💝",
+    "Remind them of a funny memory you both cherish and laugh together. 😂💖",
+    "Do something they enjoy, even if it’s not your favorite activity—showing support. 🎮❤️"
+]
+
     return random.choice(challenges)
 
 # Streamlit Web App
