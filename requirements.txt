@@ -5,3 +5,4 @@ textblob
 Pillow
 transformers 
 torch
+huggingface_hub
