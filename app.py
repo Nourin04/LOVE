@@ -270,7 +270,19 @@ with tab4:
         st.warning(question)
 
 # ---- TAB 5: Love Story Compatibility ----
-with tab5:
+import streamlit as st
+
+# Define love story questions
+story_questions = [
+    ("Do you believe in love at first sight?", ["Yes", "No"]),
+    ("How do you feel about long-distance relationships?", ["Works for me", "Not my thing"]),
+    ("What’s more important in a relationship?", ["Trust", "Passion"]),
+    ("How do you celebrate anniversaries?", ["Big celebrations", "Small, intimate moments"]),
+    ("How do you handle challenges in your relationship?", ["Together, as a team", "It’s tough, but we try"]),
+]
+
+# Create a tab for Love Story Compatibility
+with st.container():
     st.header("💖 Love Story Compatibility")
     st.markdown(
         """
@@ -278,27 +290,24 @@ with tab5:
         Answer the following questions and let's calculate your compatibility score!
         """
     )
-    
-    # Define love story questions
-    story_questions = [
-        ("Do you believe in love at first sight?", ["Yes", "No"]),
-        ("How do you feel about long-distance relationships?", ["Works for me", "Not my thing"]),
-        ("What’s more important in a relationship?", ["Trust", "Passion"]),
-        ("How do you celebrate anniversaries?", ["Big celebrations", "Small, intimate moments"]),
-        ("How do you handle challenges in your relationship?", ["Together, as a team", "It’s tough, but we try"]),
-    ]
-    
+
+    # Initialize lists to collect answers
     answers1_story = []
     answers2_story = []
-    
-    # Collect answers for both partners
-    st.subheader("Your Answers:")
+
+    # Collect answers for "His" section
+    st.subheader("His Answers:")
     for q, options in story_questions:
         answer1 = st.radio(q, options, key=f"story_q1_{q}")
-        answer2 = st.radio(q, options, key=f"story_q2_{q}")
         answers1_story.append(answer1)
+
+    # Collect answers for "Her" section
+    st.subheader("Her Answers:")
+    for q, options in story_questions:
+        answer2 = st.radio(q, options, key=f"story_q2_{q}")
         answers2_story.append(answer2)
-    
+
+    # Button to calculate compatibility score
     if st.button("Calculate Love Story Compatibility 💕", key="story_compat_btn"):
         # Calculate compatibility score based on answers (simplified for demonstration)
         story_compat_score = sum([1 for ans1, ans2 in zip(answers1_story, answers2_story) if ans1 == ans2])
