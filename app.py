@@ -120,7 +120,7 @@ background_image = "bgimage.jpg"  # Adjust this if the image is in a different f
 # Try loading and displaying the image
 try:
     img = Image.open(background_image)
-    st.image(img, caption="Background Image Loaded", use_column_width=True)
+    st.image(img, caption="Background Image Loaded", use_container_width=True)
 except Exception as e:
     st.error(f"Error loading image: {e}")
 
