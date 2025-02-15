@@ -239,7 +239,7 @@ with tab4:
     uploaded_image = st.file_uploader("Upload Your Couple's Photo 📸", type=["jpg", "png", "jpeg"])
 
     if uploaded_image:
-        st.image(uploaded_image, caption="Your Beautiful Moment ❤️", use_column_width=True)
+        st.image(uploaded_image, caption="Your Beautiful Moment ❤️", use_container_width=True)
         st.success("Such a cute photo! 💕")
         
     if st.button("Generate My Love Story ❤️", key="story_btn"):
