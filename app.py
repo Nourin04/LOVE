@@ -214,67 +214,9 @@ with tab1:
         result = calculate_love(name1, name2, birth1, birth2)
         st.success(result)
 
-# ---- TAB 2: AI Love Advice Chatbot ----
+
+# ---- TAB 2: Personality Test-Based Love Compatibility ----
 with tab2:
-    st.header("💌 AI Love Advice")
-    if st.button("Get Love Advice 💬", key="love_advice_btn"):
-        advice = get_love_advice()
-        st.info(advice)
-
-# ---- TAB 3: Mini Games for Couples ----
-with tab3:
-    st.header("🎮 Love Game Time!")
-    if st.button("Get a Fun Love Question 🎲", key="love_game_btn"):
-        question = get_love_game()
-        st.warning(question)
-
-# ---- TAB 4: Love Story Generator ----
-with tab4:
-    st.header("📖 AI Love Story Generator")
-    place = st.text_input("Where did you meet?", key="story_place")
-    event = st.text_input("A special event in your relationship:", key="story_event")
-    memory = st.text_input("A favorite shared memory:", key="story_memory")
-
-    # Add image uploader
-    uploaded_image = st.file_uploader("Upload Your Couple's Photo 📸", type=["jpg", "png", "jpeg"])
-
-    if uploaded_image:
-        st.image(uploaded_image, caption="Your Beautiful Moment ❤️", use_container_width=True)
-        st.success("Such a cute photo! 💕")
-        
-    if st.button("Generate My Love Story ❤️", key="story_btn"):
-        if name1 and name2 and place and event and memory:
-            story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
-            st.success(story)
-        else:
-            st.warning("Please fill in all fields to generate your love story.")
-
-# ---- TAB 5: Chat Sentiment Analysis ----
-with tab5:
-    st.header("💬 Chat Sentiment Check")
-    chat_text = st.text_area("Paste your recent chat messages here:", key="chat_text")
-    if st.button("Analyze Chat 💌", key="chat_btn"):
-        sentiment_result = analyze_chat(chat_text)
-        st.warning(sentiment_result)
-
-# ---- TAB 6: Zodiac Compatibility ----
-with tab6:
-    st.header("✨ Zodiac Love Match")
-    zodiac1 = st.selectbox("Select Your Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"], key="zodiac1")
-    zodiac2 = st.selectbox("Select Partner's Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"], key="zodiac2")
-    if st.button("Check Zodiac Compatibility 🌟", key="zodiac_btn"):
-        st.success(zodiac_match(zodiac1, zodiac2))
-
-# ---- TAB 7: Daily Love Challenge ----
-with tab7:
-    st.header("💖 Love Challenge of the Day")
-    if st.button("Get Daily Love Challenge 🎯", key="love_challenge_btn"):
-        challenge = daily_love_challenge()
-        st.info(challenge)
-
-
-# ---- TAB 8: Personality Test-Based Love Compatibility ----
-with tab8:
     st.header("💖 Personality Test-Based Love Compatibility")
     st.markdown(
         """
@@ -308,8 +250,23 @@ with tab8:
         compatibility_score = sum([1 for ans1, ans2 in zip(answers1, answers2) if ans1 == ans2])
         st.success(f"Your personality compatibility score is: {compatibility_score * 20}%!")
 
-# ---- TAB 9: Love Story Compatibility ----
-with tab9:
+
+# ---- TAB 3: AI Love Advice Chatbot ----
+with tab3:
+    st.header("💌 AI Love Advice")
+    if st.button("Get Love Advice 💬", key="love_advice_btn"):
+        advice = get_love_advice()
+        st.info(advice)
+
+# ---- TAB 4: Mini Games for Couples ----
+with tab4:
+    st.header("🎮 Love Game Time!")
+    if st.button("Get a Fun Love Question 🎲", key="love_game_btn"):
+        question = get_love_game()
+        st.warning(question)
+
+# ---- TAB 5: Love Story Compatibility ----
+with tab5:
     st.header("💖 Love Story Compatibility")
     st.markdown(
         """
@@ -342,4 +299,51 @@ with tab9:
         # Calculate compatibility score based on answers (simplified for demonstration)
         story_compat_score = sum([1 for ans1, ans2 in zip(answers1_story, answers2_story) if ans1 == ans2])
         st.success(f"Your love story compatibility score is: {story_compat_score * 20}%!")
+
+
+# ---- TAB 6: Love Story Generator ----
+with tab6:
+    st.header("📖 AI Love Story Generator")
+    place = st.text_input("Where did you meet?", key="story_place")
+    event = st.text_input("A special event in your relationship:", key="story_event")
+    memory = st.text_input("A favorite shared memory:", key="story_memory")
+
+    # Add image uploader
+    uploaded_image = st.file_uploader("Upload Your Couple's Photo 📸", type=["jpg", "png", "jpeg"])
+
+    if uploaded_image:
+        st.image(uploaded_image, caption="Your Beautiful Moment ❤️", use_container_width=True)
+        st.success("Such a cute photo! 💕")
+        
+    if st.button("Generate My Love Story ❤️", key="story_btn"):
+        if name1 and name2 and place and event and memory:
+            story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
+            st.success(story)
+        else:
+            st.warning("Please fill in all fields to generate your love story.")
+
+# ---- TAB 7: Chat Sentiment Analysis ----
+with tab7:
+    st.header("💬 Chat Sentiment Check")
+    chat_text = st.text_area("Paste your recent chat messages here:", key="chat_text")
+    if st.button("Analyze Chat 💌", key="chat_btn"):
+        sentiment_result = analyze_chat(chat_text)
+        st.warning(sentiment_result)
+
+# ---- TAB 8: Zodiac Compatibility ----
+with tab8:
+    st.header("✨ Zodiac Love Match")
+    zodiac1 = st.selectbox("Select Your Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"], key="zodiac1")
+    zodiac2 = st.selectbox("Select Partner's Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"], key="zodiac2")
+    if st.button("Check Zodiac Compatibility 🌟", key="zodiac_btn"):
+        st.success(zodiac_match(zodiac1, zodiac2))
+
+# ---- TAB 9: Daily Love Challenge ----
+with tab9:
+    st.header("💖 Love Challenge of the Day")
+    if st.button("Get Daily Love Challenge 🎯", key="love_challenge_btn"):
+        challenge = daily_love_challenge()
+        st.info(challenge)
+
+
 
