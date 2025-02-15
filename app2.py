@@ -50,7 +50,7 @@ def calculate_love(name1, name2, birth1, birth2):
     score = random.randint(50, 100)
     return f"\U0001F496 {name1} and {name2} have a love compatibility of {score}%! \U0001F496"
 
-# Function: AI Love Advice Chatbot
+# Function: AI Love Advice Chatbot (with Falcon model integration)
 def get_love_advice():
     advice_list = [
     "True love is about growing together. ❤️",
@@ -169,79 +169,6 @@ def chatbot_response(user_input):
 if st.sidebar.button("Send Message 💬", key="sidebar_chatbot_btn"):
     if user_input:
         response = chatbot_response(user_input)
-        st.sidebar.success(f"Chatbot: {response}")
+        st.sidebar.text_area("Chatbot Response", response, height=200)
     else:
-        st.sidebar.warning("Please type a message to start the conversation.")
-
-# Main Layout: Tabs
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-    "Love Score 💕", "Love Advice 💌", "Mini Games 🎮", 
-    "Love Story 📖", "Chat Analysis 💬", 
-    "Zodiac Match ✨", "Love Challenge 🎯", "Love Chatbot 🤖"
-])
-
-# ---- Tab 1: Love Score ----
-with tab1:
-    st.header("💖 Love Score Calculator 💖")
-    name1 = st.text_input("Enter your name", key="name1")
-    name2 = st.text_input("Enter your partner's name", key="name2")
-    birth1 = st.text_input("Enter your birth date (YYYY-MM-DD)", key="birth1")
-    birth2 = st.text_input("Enter your partner's birth date (YYYY-MM-DD)", key="birth2")
-    if st.button("Calculate Love Score 💕"):
-        if name1 and name2 and birth1 and birth2:
-            result = calculate_love(name1, name2, birth1, birth2)
-            st.success(result)
-        else:
-            st.warning("Please fill in all fields!")
-
-# ---- Tab 2: Love Advice ----
-with tab2:
-    st.header("💌 Love Advice 💌")
-    st.write(get_love_advice())
-
-# ---- Tab 3: Mini Games ----
-with tab3:
-    st.header("🎮 Mini Games for Couples 🎮")
-    st.write(get_love_game())
-
-# ---- Tab 4: Love Story ----
-with tab4:
-    st.header("📖 AI Love Story 📖")
-    names = st.text_input("Enter names of the couple", key="names")
-    place = st.text_input("Enter the place where they met", key="place")
-    event = st.text_input("Enter a memorable event they shared", key="event")
-    memory = st.text_input("Enter a cherished memory", key="memory")
-    if st.button("Generate Love Story 💖"):
-        if names and place and event and memory:
-            story = generate_ai_love_story(names, place, event, memory)
-            st.success(story)
-        else:
-            st.warning("Please fill in all fields!")
-
-# ---- Tab 5: Chat Analysis ----
-with tab5:
-    st.header("💬 Chat Sentiment Analysis 💬")
-    chat_text = st.text_area("Enter your chat text", key="chat_text")
-    if st.button("Analyze Sentiment 📊"):
-        if chat_text:
-            sentiment = analyze_chat(chat_text)
-            st.success(sentiment)
-        else:
-            st.warning("Please enter chat text to analyze!")
-
-# ---- Tab 6: Zodiac Match ----
-with tab6:
-    st.header("✨ Zodiac Match ✨")
-    zodiac1 = st.text_input("Enter your zodiac sign", key="zodiac1")
-    zodiac2 = st.text_input("Enter your partner's zodiac sign", key="zodiac2")
-    if st.button("Check Compatibility 💫"):
-        if zodiac1 and zodiac2:
-            match = zodiac_match(zodiac1, zodiac2)
-            st.success(match)
-        else:
-            st.warning("Please enter both zodiac signs!")
-
-# ---- Tab 7: Daily Love Challenge ----
-with tab7:
-    st.header("🎯 Daily Love Challenge 🎯")
-    st.write(daily_love_challenge())
+        st.sidebar.text_area("Chatbot Response", "Please enter a message to start chatting!", height=200)
