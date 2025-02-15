@@ -152,6 +152,12 @@ def daily_love_challenge():
     return random.choice(challenges)
 
 # Streamlit Web App
+# Set the page title and icon
+st.set_page_config(
+    page_title="HeartTales - Love Compatibility",  # Title in the browser tab
+    page_icon="❤️",  # Icon in the browser tab (can be emoji or a path to an image file)
+)
+
 st.title("💖✨  HeartTales : Where Love Stories Begin ✨💖")
 st.markdown("#### *Every love story deserves to be told.*")
 
