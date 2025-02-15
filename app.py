@@ -34,10 +34,9 @@ def get_love_game():
 # Function: AI Love Story Generator
 from transformers import pipeline
 
-# Load a text generation model from Hugging Face (replace with a suitable model)
-generator = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct")
+# Use a smaller, lightweight model
+generator = pipeline("text-generation", model="facebook/opt-1.3b")
 
-# Function: AI Love Story Generator
 def generate_ai_love_story(names, place, event, memory):
     prompt = (f"Write a romantic love story about {names}. "
               f"They met at {place}, and their most memorable moment was {memory}. "
@@ -46,6 +45,7 @@ def generate_ai_love_story(names, place, event, memory):
 
     response = generator(prompt, max_length=250, temperature=0.7, do_sample=True)
     return response[0]["generated_text"].strip()
+
 
 
 
