@@ -30,13 +30,38 @@ def get_love_game():
     return random.choice(questions)
 
 # Function: Love Story Generator
-def generate_love_story(name1, name2):
-    story_templates = [
-        f"{name1} met {name2} under the shining moonlight. It was love at first sight. 💖",
-        f"{name1} and {name2} were childhood friends who reconnected after years. ☕💘",
-        f"A romantic road trip turned into a love story for {name1} and {name2}. 🚗💞"
-    ]
-    return random.choice(story_templates)
+import openai
+
+# Function: AI Love Story Generator
+def generate_ai_love_story(names, place, event, memory):
+    prompt = (f"Write a short romantic story about {names}, who met at {place}. "
+              f"Their most memorable moment was {memory}. "
+              f"A special event that brought them closer was {event}. "
+              f"Make it heartwarming and magical.")
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # Replace with the model you're using
+        messages=[{"role": "user", "content": prompt}]
+    )
+    
+    return response["choices"][0]["message"]["content"]
+
+# Streamlit UI for Love Story Generator
+st.header("📖 AI Love Story Generator")
+
+name1 = st.text_input("Enter Your Name:")
+name2 = st.text_input("Enter Partner's Name:")
+place = st.text_input("Where did you meet?")
+event = st.text_input("A special event in your relationship:")
+memory = st.text_input("A favorite shared memory:")
+
+if st.button("Generate My Love Story ❤️"):
+    if name1 and name2 and place and event and memory:
+        story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
+        st.success(story)
+    else:
+        st.warning("Please fill in all fields to generate your love story.")
+
 
 # Function: Photo Compatibility Analysis (Mockup)
 def analyze_photo(image):
