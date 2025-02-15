@@ -1,6 +1,4 @@
-streamlit 
-opencv-python 
-textblob 
-nltk 
-requests 
-random2
+streamlit
+opencv-python-headless
+numpy
+textblob
