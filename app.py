@@ -234,21 +234,25 @@ with tab2:
         ("What’s your idea of a perfect date?", ["Romantic dinner", "Fun outdoor activity"]),
     ]
     
+    # Collect answers for "Him"
+    st.subheader("His Answers:")
     answers1 = []
-    answers2 = []
-    
-    # Collect answers for Person 1 and Person 2
-    st.subheader("Your Answers:")
     for q, options in questions:
         answer1 = st.radio(q, options, key=f"q1_{q}")
-        answer2 = st.radio(q, options, key=f"q2_{q}")
         answers1.append(answer1)
+
+    # Collect answers for "Her"
+    st.subheader("Her Answers:")
+    answers2 = []
+    for q, options in questions:
+        answer2 = st.radio(q, options, key=f"q2_{q}")
         answers2.append(answer2)
-    
+
     if st.button("Calculate Personality Compatibility 💘", key="personality_btn"):
         # Calculate a compatibility score based on answers (simplified for demonstration)
         compatibility_score = sum([1 for ans1, ans2 in zip(answers1, answers2) if ans1 == ans2])
         st.success(f"Your personality compatibility score is: {compatibility_score * 20}%!")
+
 
 
 # ---- TAB 3: AI Love Advice Chatbot ----
