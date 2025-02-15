@@ -10,28 +10,19 @@ API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 # Function: Generate AI Love Story using Hugging Face API
 # Function: Generate AI Love Story using Falcon-7B
 def generate_ai_love_story(names, place, event, memory):
-    api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
-    api_url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
-
-    headers = {"Authorization": f"Bearer {api_key}"}
-    prompt = (f"Write a heartfelt love story about {names}. "
-              f"They met at {place}, where their journey began. "
-              f"A memorable moment they cherish is {memory}. "
-              f"One event that deepened their love was {event}. "
-              f"Make the story emotional, romantic, and magical.")
-
-    payload = {"inputs": prompt, "parameters": {"max_length": 300, "temperature": 0.8}}
-    response = requests.post(api_url, headers=headers, json=payload)
-
-    if response.status_code == 200:
-        try:
-            story = response.json()[0]["generated_text"]
-            return story
-        except (KeyError, IndexError):
-            return "Error: Unexpected response format from the AI model."
-    else:
-        return f"Error: Unable to generate story. ({response.status_code})"
-
+    tokenizer = AutoTokenizer.from_pretrained("facebook/opt-1.3b")
+    model = AutoModelForCausalLM.from_pretrained("facebook/opt-1.3b")
+    
+    prompt = (f"Write a romantic love story about {names}. "
+              f"They met at {place}, and their most memorable moment was {memory}. "
+              f"The event that brought them closer was {event}. "
+              f"Make the story emotional, heartwarming, and magical.")
+    
+    inputs = tokenizer(prompt, return_tensors="pt")
+    outputs = model.generate(**inputs, max_length=250, temperature=0.7, do_sample=True)
+    story = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    
+    return story
 
 # Function: Love Compatibility Score
 def calculate_love(name1, name2, birth1, birth2):
