@@ -33,18 +33,27 @@ def get_love_game():
 import openai
 
 # Function: AI Love Story Generator
-def generate_ai_love_story(names, place, event, memory):
-    prompt = (f"Write a short romantic story about {names}, who met at {place}. "
-              f"Their most memorable moment was {memory}. "
-              f"A special event that brought them closer was {event}. "
-              f"Make it heartwarming and magical.")
+import openai
 
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # Replace with the model you're using
-        messages=[{"role": "user", "content": prompt}]
+# Initialize OpenAI client (make sure your API key is set up)
+client = openai.Client()
+
+# Function: AI Love Story Generator
+def generate_ai_love_story(names, place, event, memory):
+    prompt = (f"Write a short and heartwarming romantic story about {names}. "
+              f"They first met at {place}, and their most memorable moment was {memory}. "
+              f"The event that brought them closer was {event}. "
+              f"Make the story emotional, magical, and uplifting.")
+
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",  # Ensure the correct model is specified
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=250,  # Control story length
+        temperature=0.7  # Adds creativity to the story
     )
     
-    return response["choices"][0]["message"]["content"]
+    return response.choices[0].message.content.strip()
+
 
 # Streamlit UI for Love Story Generator
 st.header("📖 AI Love Story Generator")
