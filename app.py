@@ -355,16 +355,20 @@ st.markdown(
     <style>
     .streamlit-expanderHeader {
         font-size: 20px !important;
+        font-weight: bold !important;
     }
     .tab {
         font-size: 20px !important;
+        font-weight: bold !important;
     }
     .css-1lcb2zz {
         font-size: 20px !important;
+        font-weight: bold !important;
     }
     </style>
     """, unsafe_allow_html=True
 )
+
 
 
 
