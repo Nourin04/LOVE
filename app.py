@@ -47,8 +47,6 @@ def generate_ai_love_story(names, place, event, memory):
     response = generator(prompt, max_length=250, temperature=0.7, do_sample=True)
     return response[0]["generated_text"].strip()
 
-📌 Why This Works
-
 
 
 # Streamlit UI for Love Story Generator
