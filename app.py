@@ -234,7 +234,14 @@ with tab4:
     place = st.text_input("Where did you meet?", key="story_place")
     event = st.text_input("A special event in your relationship:", key="story_event")
     memory = st.text_input("A favorite shared memory:", key="story_memory")
-    
+
+    # Add image uploader
+    uploaded_image = st.file_uploader("Upload Your Couple's Photo 📸", type=["jpg", "png", "jpeg"])
+
+    if uploaded_image:
+        st.image(uploaded_image, caption="Your Beautiful Moment ❤️", use_column_width=True)
+        st.success("Such a cute photo! 💕")
+        
     if st.button("Generate My Love Story ❤️", key="story_btn"):
         if name1 and name2 and place and event and memory:
             story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
