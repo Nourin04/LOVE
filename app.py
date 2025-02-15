@@ -29,31 +29,25 @@ def get_love_game():
     ]
     return random.choice(questions)
 
-# Function: Love Story Generator
-import openai
 
-# Function: AI Love Story Generator
-import openai
-
-# Initialize OpenAI client (make sure your API key is set up)
-client = openai.Client()
 
 # Function: AI Love Story Generator
 from transformers import pipeline
 
-# Load Hugging Face text generation model
-generator = pipeline("text-generation", model="meta-llama/Llama-2-7b-chat-hf")  # Use an appropriate model
+# Load a text generation model from Hugging Face (replace with a suitable model)
+generator = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct")
 
 # Function: AI Love Story Generator
 def generate_ai_love_story(names, place, event, memory):
-    prompt = (f"Write a short, heartwarming romantic story about {names}. "
-              f"They first met at {place}, and their most memorable moment was {memory}. "
+    prompt = (f"Write a romantic love story about {names}. "
+              f"They met at {place}, and their most memorable moment was {memory}. "
               f"The event that brought them closer was {event}. "
-              f"Make the story emotional, magical, and uplifting.")
+              f"Make the story emotional, heartwarming, and magical.")
 
     response = generator(prompt, max_length=250, temperature=0.7, do_sample=True)
     return response[0]["generated_text"].strip()
 
+📌 Why This Works
 
 
 
