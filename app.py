@@ -24,16 +24,15 @@ def generate_ai_love_story(names, place, event, memory):
               f"Include moments of tension, excitement, and love, making it a truly enchanting and unforgettable story. "
               f"Make the love story vivid, passionate, and real.")
 
-    payload = {
-        "inputs": prompt,
-        "parameters": {
-            "max_length": 500,
-            "temperature": 0.85,
-            "top_p": 0.9,
-            "top_k": 50,
-            "repetition_penalty": 1.2
-        }
+   payload = {
+    "inputs": prompt, 
+    "parameters": {
+        "max_length": 500, 
+        "temperature": 0.7, 
+        "top_k": 50
     }
+}
+
 
     try:
         response = requests.post(api_url, headers=headers, json=payload, timeout=10)
