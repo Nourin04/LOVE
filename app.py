@@ -10,7 +10,7 @@ API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 # Function: Generate AI Love Story using Hugging Face API
 def generate_ai_love_story(names, place, event, memory):
     api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
-    api_url = "https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-chat-hf"
+    api_url = "https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-hf"
 
     headers = {"Authorization": f"Bearer {api_key}"}
     prompt = (f"Write a romantic love story about {names}. "
@@ -26,36 +26,6 @@ def generate_ai_love_story(names, place, event, memory):
         return story
     else:
         return f"Error: Unable to generate story. ({response.status_code})"
-
-# Streamlit UI
-name1 = st.text_input("Enter Your Name:", key="name1")
-name2 = st.text_input("Enter Partner's Name:", key="name2")
-place = st.text_input("Where did you meet?", key="place")
-event = st.text_input("A special event in your relationship:", key="event")
-memory = st.text_input("A favorite shared memory:", key="memory")
-
-
-if st.button("Generate Love Story ❤️"):
-    if name1 and name2 and place and event and memory:
-        story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
-        st.success(story)
-    else:
-        st.warning("Please fill in all fields to generate your love story.")
-# Streamlit UI
-st.title("💖 AI Love Story Generator")
-name1 = st.text_input("Enter Your Name:")
-name2 = st.text_input("Enter Partner's Name:")
-place = st.text_input("Where did you meet?")
-event = st.text_input("A special event in your relationship:")
-memory = st.text_input("A favorite shared memory:")
-
-if st.button("Generate Love Story ❤️"):
-    if name1 and name2 and place and event and memory:
-        story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
-        st.success(story)
-    else:
-        st.warning("Please fill in all fields to generate your love story.")
-
 
 # Function: Love Compatibility Score
 def calculate_love(name1, name2, birth1, birth2):
@@ -129,37 +99,37 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
 # ---- TAB 1: Love Compatibility Score ----
 with tab1:
     st.header("💞 Love Compatibility Score")
-    name1 = st.text_input("Enter Your Name:")
-    birth1 = st.text_input("Enter Your Birth Date (YYYY-MM-DD):")
-    name2 = st.text_input("Enter Partner's Name:")
-    birth2 = st.text_input("Enter Partner's Birth Date (YYYY-MM-DD):")
+    name1 = st.text_input("Enter Your Name:", key="love_name1")
+    birth1 = st.text_input("Enter Your Birth Date (YYYY-MM-DD):", key="love_birth1")
+    name2 = st.text_input("Enter Partner's Name:", key="love_name2")
+    birth2 = st.text_input("Enter Partner's Birth Date (YYYY-MM-DD):", key="love_birth2")
     
-    if st.button("Calculate Love Score 💕"):
+    if st.button("Calculate Love Score 💕", key="love_score_btn"):
         result = calculate_love(name1, name2, birth1, birth2)
         st.success(result)
 
 # ---- TAB 2: AI Love Advice Chatbot ----
 with tab2:
     st.header("💌 AI Love Advice")
-    if st.button("Get Love Advice 💬"):
+    if st.button("Get Love Advice 💬", key="love_advice_btn"):
         advice = get_love_advice()
         st.info(advice)
 
 # ---- TAB 3: Mini Games for Couples ----
 with tab3:
     st.header("🎮 Love Game Time!")
-    if st.button("Get a Fun Love Question 🎲"):
+    if st.button("Get a Fun Love Question 🎲", key="love_game_btn"):
         question = get_love_game()
         st.warning(question)
 
 # ---- TAB 4: Love Story Generator ----
 with tab4:
     st.header("📖 AI Love Story Generator")
-    place = st.text_input("Where did you meet?")
-    event = st.text_input("A special event in your relationship:")
-    memory = st.text_input("A favorite shared memory:")
+    place = st.text_input("Where did you meet?", key="story_place")
+    event = st.text_input("A special event in your relationship:", key="story_event")
+    memory = st.text_input("A favorite shared memory:", key="story_memory")
     
-    if st.button("Generate My Love Story ❤️"):
+    if st.button("Generate My Love Story ❤️", key="story_btn"):
         if name1 and name2 and place and event and memory:
             story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
             st.success(story)
@@ -169,21 +139,21 @@ with tab4:
 # ---- TAB 5: Chat Sentiment Analysis ----
 with tab5:
     st.header("💬 Chat Sentiment Check")
-    chat_text = st.text_area("Paste your recent chat messages here:")
-    if st.button("Analyze Chat 💌"):
+    chat_text = st.text_area("Paste your recent chat messages here:", key="chat_text")
+    if st.button("Analyze Chat 💌", key="chat_btn"):
         sentiment_result = analyze_chat(chat_text)
         st.warning(sentiment_result)
 
 # ---- TAB 6: Zodiac Compatibility ----
 with tab6:
     st.header("✨ Zodiac Love Match")
-    zodiac1 = st.selectbox("Select Your Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"])
-    zodiac2 = st.selectbox("Select Partner's Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"])
-    if st.button("Check Zodiac Compatibility 🌟"):
+    zodiac1 = st.selectbox("Select Your Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"], key="zodiac1")
+    zodiac2 = st.selectbox("Select Partner's Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"], key="zodiac2")
+    if st.button("Check Zodiac Compatibility 🌟", key="zodiac_btn"):
         st.success(zodiac_match(zodiac1, zodiac2))
 
 # ---- TAB 7: Daily Love Challenge ----
 with tab7:
     st.header("💖 Love Challenge of the Day")
-    if st.button("Get Today's Challenge 🎯"):
+    if st.button("Get Today's Challenge 🎯", key="love_challenge_btn"):
         st.info(daily_love_challenge())
