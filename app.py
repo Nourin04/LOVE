@@ -39,20 +39,22 @@ import openai
 client = openai.Client()
 
 # Function: AI Love Story Generator
+from transformers import pipeline
+
+# Load Hugging Face text generation model
+generator = pipeline("text-generation", model="meta-llama/Llama-2-7b-chat-hf")  # Use an appropriate model
+
+# Function: AI Love Story Generator
 def generate_ai_love_story(names, place, event, memory):
-    prompt = (f"Write a short and heartwarming romantic story about {names}. "
+    prompt = (f"Write a short, heartwarming romantic story about {names}. "
               f"They first met at {place}, and their most memorable moment was {memory}. "
               f"The event that brought them closer was {event}. "
               f"Make the story emotional, magical, and uplifting.")
 
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",  # Ensure the correct model is specified
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=250,  # Control story length
-        temperature=0.7  # Adds creativity to the story
-    )
-    
-    return response.choices[0].message.content.strip()
+    response = generator(prompt, max_length=250, temperature=0.7, do_sample=True)
+    return response[0]["generated_text"].strip()
+
+
 
 
 # Streamlit UI for Love Story Generator
