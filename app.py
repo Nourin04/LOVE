@@ -112,7 +112,8 @@ st.title("💖✨  HeartTales : Where Love Stories Begin ✨💖")
 st.markdown("#### *Every love story deserves to be told.*")
 
 # Set the background image URL (local or from the web)
-background_image = "bgimage.jpg"  # Replace with your image URL or path
+# Set the background image URL (online image)
+background_image = "bgimage.jpg"  # Replace with your image URL
 
 # Use CSS to set the background image
 st.markdown(
@@ -122,6 +123,7 @@ st.markdown(
         background-image: url({background_image});
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
     }}
     </style>
     """, 
