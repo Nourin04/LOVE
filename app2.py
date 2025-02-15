@@ -152,19 +152,9 @@ def daily_love_challenge():
     return random.choice(challenges)
 
 # Sidebar: Display Chatbot
+# Sidebar: Display Chatbot
 st.sidebar.header("Love Chatbot 🤖")
 user_input = st.sidebar.text_input("Chat with the Love Chatbot...", key="sidebar_chatbot_input")
-# Function: Chatbot Response
-def chatbot_response(user_input):
-    # Example logic for generating chatbot response
-    if "love" in user_input.lower():
-        return "Love is a beautiful journey! 💖 Always cherish your moments together."
-    elif "date" in user_input.lower():
-        return "A perfect date idea is one where you both can relax and enjoy each other's company! 🍷🍝"
-    elif "relationship" in user_input.lower():
-        return "A healthy relationship is built on trust, communication, and mutual respect. 🌟"
-    else:
-        return "I'm here to talk about love and relationships! Ask me anything. 💬"
 
 if st.sidebar.button("Send Message 💬", key="sidebar_chatbot_btn"):
     if user_input:
@@ -172,3 +162,31 @@ if st.sidebar.button("Send Message 💬", key="sidebar_chatbot_btn"):
         st.sidebar.text_area("Chatbot Response", response, height=200)
     else:
         st.sidebar.text_area("Chatbot Response", "Please enter a message to start chatting!", height=200)
+# Function: Chatbot Response
+def chatbot_response(user_input):
+    api_url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
+    api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
+
+    headers = {"Authorization": f"Bearer {api_key}"}
+    prompt = f"Respond to the following user input as a chatbot. The input is: '{user_input}'"
+
+    payload = {
+        "inputs": prompt,
+        "parameters": {
+            "max_length": 150,
+            "temperature": 0.7,
+            "top_k": 50
+        }
+    }
+
+    try:
+        response = requests.post(api_url, headers=headers, json=payload, timeout=10)
+        response.raise_for_status()  # Raise error for non-2xx status codes
+        bot_reply = response.json()[0]["generated_text"]
+        return bot_reply
+    except requests.exceptions.Timeout:
+        return "Error: Request timed out. Please try again later."
+    except requests.exceptions.RequestException as e:
+        return f"Error: An issue occurred while contacting the model ({str(e)})."
+    except (KeyError, IndexError):
+        return "Error: Unexpected response format from the AI model."
