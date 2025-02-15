@@ -24,7 +24,7 @@ def generate_ai_love_story(names, place, event, memory):
               f"Include moments of tension, excitement, and love, making it a truly enchanting and unforgettable story. "
               f"Make the love story vivid, passionate, and real.")
 
-   payload = {
+    payload = {
     "inputs": prompt, 
     "parameters": {
         "max_length": 500, 
