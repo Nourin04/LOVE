@@ -16,23 +16,37 @@ def generate_ai_love_story(names, place, event, memory):
     api_url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
 
     headers = {"Authorization": f"Bearer {api_key}"}
-    prompt = (f"Write a heartfelt love story about {names}. "
-              f"They met at {place}, where their journey began. "
-              f"A memorable moment they cherish is {memory}. "
-              f"One event that deepened their love was {event}. "
-              f"Make the story emotional, romantic, and magical.")
+    prompt = (f"Write a heartfelt, emotional, and magical love story about {names}. "
+              f"They met at {place}, a place full of memories that changed their lives forever. "
+              f"Describe the atmosphere and feelings they experienced when they first met. "
+              f"A memorable moment they cherish together is {memory}, and this memory always brings them closer. "
+              f"One event that deepened their love was {event}, where they truly understood how much they meant to each other. "
+              f"Include moments of tension, excitement, and love, making it a truly enchanting and unforgettable story. "
+              f"Make the love story vivid, passionate, and real.")
 
-    payload = {"inputs": prompt, "parameters": {"max_length": 300, "temperature": 0.8}}
-    response = requests.post(api_url, headers=headers, json=payload)
+    payload = {
+        "inputs": prompt,
+        "parameters": {
+            "max_length": 500,
+            "temperature": 0.85,
+            "top_p": 0.9,
+            "top_k": 50,
+            "repetition_penalty": 1.2
+        }
+    }
 
-    if response.status_code == 200:
-        try:
-            story = response.json()[0]["generated_text"]
-            return story
-        except (KeyError, IndexError):
-            return "Error: Unexpected response format from the AI model."
-    else:
-        return f"Error: Unable to generate story. ({response.status_code})"
+    try:
+        response = requests.post(api_url, headers=headers, json=payload, timeout=10)
+        response.raise_for_status()  # Raise error for non-2xx status codes
+        story = response.json()[0]["generated_text"]
+        return story
+    except requests.exceptions.Timeout:
+        return "Error: Request timed out. Please try again later."
+    except requests.exceptions.RequestException as e:
+        return f"Error: An issue occurred while contacting the model ({str(e)})."
+    except (KeyError, IndexError):
+        return "Error: Unexpected response format from the AI model."
+
 
 
 # Function: Love Compatibility Score
