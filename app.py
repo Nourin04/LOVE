@@ -196,9 +196,9 @@ st.markdown(
 )
 
 # Create Tabs
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-    "Love Score 💕", "Love Advice 💌", "Mini Games 🎮", 
-    "Love Story 📖", "Chat Analysis 💬", 
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
+    "Love Score 💕", "Personality Test-Based Compatibility 🧠", "Love Advice 💌", "Mini Games 🎮", "Love Story Compatibility 💖", 
+    "Love Story Generator📖", "Chat Analysis 💬", 
     "Zodiac Match ✨", "Love Challenge 🎯"
 ])
 
@@ -271,3 +271,75 @@ with tab7:
     if st.button("Get Daily Love Challenge 🎯", key="love_challenge_btn"):
         challenge = daily_love_challenge()
         st.info(challenge)
+
+
+# ---- TAB 8: Personality Test-Based Love Compatibility ----
+with tab8:
+    st.header("💖 Personality Test-Based Love Compatibility")
+    st.markdown(
+        """
+        Take this quick personality test to see how well you and your partner match!
+        Answer the following questions based on your preferences:
+        """
+    )
+
+    # Define personality test questions
+    questions = [
+        ("How do you feel about spontaneous adventures?", ["Love it!", "Not for me"]),
+        ("What’s your ideal weekend activity?", ["Relaxing at home", "Exploring new places"]),
+        ("How do you handle disagreements?", ["I prefer to talk it out", "I like to have some space"]),
+        ("How do you express love?", ["Through words", "Through actions"]),
+        ("What’s your idea of a perfect date?", ["Romantic dinner", "Fun outdoor activity"]),
+    ]
+    
+    answers1 = []
+    answers2 = []
+    
+    # Collect answers for Person 1 and Person 2
+    st.subheader("Your Answers:")
+    for q, options in questions:
+        answer1 = st.radio(q, options, key=f"q1_{q}")
+        answer2 = st.radio(q, options, key=f"q2_{q}")
+        answers1.append(answer1)
+        answers2.append(answer2)
+    
+    if st.button("Calculate Personality Compatibility 💘", key="personality_btn"):
+        # Calculate a compatibility score based on answers (simplified for demonstration)
+        compatibility_score = sum([1 for ans1, ans2 in zip(answers1, answers2) if ans1 == ans2])
+        st.success(f"Your personality compatibility score is: {compatibility_score * 20}%!")
+
+# ---- TAB 9: Love Story Compatibility ----
+with tab9:
+    st.header("💖 Love Story Compatibility")
+    st.markdown(
+        """
+        Find out how compatible you are with your partner based on your love story.
+        Answer the following questions and let's calculate your compatibility score!
+        """
+    )
+    
+    # Define love story questions
+    story_questions = [
+        ("Do you believe in love at first sight?", ["Yes", "No"]),
+        ("How do you feel about long-distance relationships?", ["Works for me", "Not my thing"]),
+        ("What’s more important in a relationship?", ["Trust", "Passion"]),
+        ("How do you celebrate anniversaries?", ["Big celebrations", "Small, intimate moments"]),
+        ("How do you handle challenges in your relationship?", ["Together, as a team", "It’s tough, but we try"]),
+    ]
+    
+    answers1_story = []
+    answers2_story = []
+    
+    # Collect answers for both partners
+    st.subheader("Your Answers:")
+    for q, options in story_questions:
+        answer1 = st.radio(q, options, key=f"story_q1_{q}")
+        answer2 = st.radio(q, options, key=f"story_q2_{q}")
+        answers1_story.append(answer1)
+        answers2_story.append(answer2)
+    
+    if st.button("Calculate Love Story Compatibility 💕", key="story_compat_btn"):
+        # Calculate compatibility score based on answers (simplified for demonstration)
+        story_compat_score = sum([1 for ans1, ans2 in zip(answers1_story, answers2_story) if ans1 == ans2])
+        st.success(f"Your love story compatibility score is: {story_compat_score * 20}%!")
+
