@@ -8,6 +8,23 @@ from transformers import AutoTokenizer
 # Get Hugging Face API key from environment variable
 API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
+# Fetch API key from secrets or environment variable
+api_key = None
+
+# Try fetching from Streamlit secrets
+if "huggingface" in st.secrets:
+    api_key = st.secrets["huggingface"].get("HUGGINGFACE_TOKEN", None)
+
+# Fallback to environment variable if not found in secrets
+if not api_key:
+    api_key = os.getenv("HUGGINGFACE_API_KEY")
+
+# Check if the API key was successfully fetched
+if not api_key:
+    st.error("Hugging Face API key not found! Please ensure it is set correctly in the secrets or environment variable.")
+else:
+    st.write("API Key successfully fetched!")
+
 # Function: Generate AI Love Story using Hugging Face API
 def generate_ai_love_story(names, place, event, memory):
     api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
