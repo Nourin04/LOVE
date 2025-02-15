@@ -9,26 +9,21 @@ API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
 # Function: Generate AI Love Story using Hugging Face API
 def generate_ai_love_story(names, place, event, memory):
-    if not API_KEY:
-        return "API key is missing. Please configure it in your environment variables."
+    api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
+    
+    tokenizer = AutoTokenizer.from_pretrained("facebook/opt-1.3b", use_auth_token=api_key)
+    model = AutoModelForCausalLM.from_pretrained("facebook/opt-1.3b", use_auth_token=api_key)
 
     prompt = (f"Write a romantic love story about {names}. "
               f"They met at {place}, and their most memorable moment was {memory}. "
               f"The event that brought them closer was {event}. "
               f"Make the story emotional, heartwarming, and magical.")
 
-    headers = {"Authorization": f"Bearer {API_KEY}"}
-    payload = {"inputs": prompt, "parameters": {"max_length": 250, "temperature": 0.7}}
+    inputs = tokenizer(prompt, return_tensors="pt")
+    outputs = model.generate(**inputs, max_length=250, temperature=0.7, do_sample=True)
+    story = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-    response = requests.post(
-        "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct",
-        headers=headers, json=payload
-    )
-
-    if response.status_code == 200:
-        return response.json()[0]["generated_text"].strip()
-    else:
-        return f"Error: {response.status_code} - {response.text}"
+    return story
 
 # Function: Love Compatibility Score
 def calculate_love(name1, name2, birth1, birth2):
