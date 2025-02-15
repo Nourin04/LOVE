@@ -349,28 +349,16 @@ with tab9:
         challenge = daily_love_challenge()
         st.info(challenge)
 
-
 st.markdown(
     """
     <style>
+    /* Expander Header Styling */
     .streamlit-expanderHeader {
         font-size: 20px !important;
         font-weight: bold !important;
     }
-    .tab {
-        font-size: 20px !important;
-        font-weight: bold !important;
-    }
-    .css-1lcb2zz {
-        font-size: 20px !important;
-        font-weight: bold !important;
-    }
-    </style>
-    """, unsafe_allow_html=True
-)
-st.markdown(
-    """
-    <style>
+
+    /* Tabs Styling */
     .tabs {
         display: flex;
         cursor: pointer;
@@ -380,15 +368,24 @@ st.markdown(
         padding: 10px;
         border-bottom: 2px solid #ccc;
     }
+
     .tabs div {
         padding: 10px;
     }
+
     .tabs div:hover {
         background-color: #f0f0f0;
     }
+
     .tabs div.active {
         border-bottom: 3px solid #00BFFF;
         color: #00BFFF;
+    }
+
+    /* Tab Button Styling */
+    .css-1lcb2zz {
+        font-size: 20px !important;
+        font-weight: bold !important;
     }
     </style>
     """, unsafe_allow_html=True
