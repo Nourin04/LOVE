@@ -130,11 +130,12 @@ st.markdown(
     <style>
     .stApp {{
         background-image: url({background_image});
-        background-size: cover;  /* Ensures the image covers the entire background */
-        background-position: center center;  /* Centers the image */
-        background-attachment: fixed;  /* Keeps the image fixed while scrolling */
+        background-size: 100% 100%;  /* Stretches the image to fill the entire background */
+        background-position: center center;  /* Ensures the image is centered */
         background-repeat: no-repeat;
-        min-height: 100vh;  /* Ensures the background covers the full height of the screen */
+        background-attachment: fixed;  /* Keeps the background fixed when scrolling */
+        height: 100vh;  /* Ensures the height of the background takes up the full viewport */
+        width: 100%;  /* Ensures the width of the background is 100% */
     }}
     </style>
     """, 
