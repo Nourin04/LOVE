@@ -8,26 +8,39 @@ from textblob import TextBlob
 API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
 # Function: Generate AI Love Story using Hugging Face API
-import streamlit as st
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-# Load the AI Love Story Generator Model
 def generate_ai_love_story(names, place, event, memory):
     api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
+    api_url = "https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-chat-hf"
 
-    tokenizer = AutoTokenizer.from_pretrained("facebook/opt-1.3b", token=api_key)
-    model = AutoModelForCausalLM.from_pretrained("facebook/opt-1.3b", token=api_key)
-
+    headers = {"Authorization": f"Bearer {api_key}"}
     prompt = (f"Write a romantic love story about {names}. "
               f"They met at {place}, and their most memorable moment was {memory}. "
               f"The event that brought them closer was {event}. "
               f"Make the story emotional, heartwarming, and magical.")
 
-    inputs = tokenizer(prompt, return_tensors="pt")
-    outputs = model.generate(**inputs, max_length=250, temperature=0.7, do_sample=True)
-    story = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    payload = {"inputs": prompt, "parameters": {"max_length": 300, "temperature": 0.7}}
+    response = requests.post(api_url, headers=headers, json=payload)
 
-    return story
+    if response.status_code == 200:
+        story = response.json()[0]["generated_text"]
+        return story
+    else:
+        return "Error: Unable to generate story. Try again later."
+
+# Streamlit UI
+st.title("💖 AI Love Story Generator")
+name1 = st.text_input("Enter Your Name:")
+name2 = st.text_input("Enter Partner's Name:")
+place = st.text_input("Where did you meet?")
+event = st.text_input("A special event in your relationship:")
+memory = st.text_input("A favorite shared memory:")
+
+if st.button("Generate Love Story ❤️"):
+    if name1 and name2 and place and event and memory:
+        story = generate_ai_love_story(f"{name1} and {name2}", place, event, memory)
+        st.success(story)
+    else:
+        st.warning("Please fill in all fields to generate your love story.")
 
 
 # Function: Love Compatibility Score
