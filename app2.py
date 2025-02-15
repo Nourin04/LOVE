@@ -154,6 +154,18 @@ def daily_love_challenge():
 # Sidebar: Display Chatbot
 st.sidebar.header("Love Chatbot 🤖")
 user_input = st.sidebar.text_input("Chat with the Love Chatbot...", key="sidebar_chatbot_input")
+# Function: Chatbot Response
+def chatbot_response(user_input):
+    # Example logic for generating chatbot response
+    if "love" in user_input.lower():
+        return "Love is a beautiful journey! 💖 Always cherish your moments together."
+    elif "date" in user_input.lower():
+        return "A perfect date idea is one where you both can relax and enjoy each other's company! 🍷🍝"
+    elif "relationship" in user_input.lower():
+        return "A healthy relationship is built on trust, communication, and mutual respect. 🌟"
+    else:
+        return "I'm here to talk about love and relationships! Ask me anything. 💬"
+
 if st.sidebar.button("Send Message 💬", key="sidebar_chatbot_btn"):
     if user_input:
         response = chatbot_response(user_input)
