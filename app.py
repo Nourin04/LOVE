@@ -124,12 +124,24 @@ st.markdown(
         min-height: 100vh;  /* Ensure full height of the screen */
         margin: 0;
         padding: 0;
+        background-color: rgba(0, 0, 0, 0.5);  /* Apply semi-transparent dark overlay */
     }}
     .stApp {{
         background: transparent;
     }}
+    .stContainer {{
+        background: rgba(255, 255, 255, 0.8);  /* Apply semi-transparent white background to containers */
+        border-radius: 10px;
+        padding: 15px;
+    }}
     h1, h2, h3, h4, h5, h6 {{
         font-weight: bold !important;
+        color: #ffffff !important;  /* White text for better visibility */
+    }}
+    .stButton {{
+        background-color: #FF3366;  /* Button background color */
+        color: white;
+        font-weight: bold;
     }}
     </style>
     """, 
