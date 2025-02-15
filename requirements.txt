@@ -3,6 +3,5 @@ opencv-python
 numpy
 textblob
 Pillow
-openai
 transformers 
 torch
