@@ -115,7 +115,7 @@ st.markdown("#### *Every love story deserves to be told.*")
 from PIL import Image
 
 # Path to the image in your repo
-background_image = " https://www.pexels.com/photo/three-red-heart-balloons-704748/"  # Adjust this if the image is in a different folder
+background_image_url = " https://www.pexels.com/photo/three-red-heart-balloons-704748/"  # Adjust this if the image is in a different folder
 
 st.markdown(
     f"""
