@@ -276,7 +276,6 @@ with tab4:
         st.warning(question)
 
 # ---- TAB 5: Love Story Compatibility ----
-import streamlit as st
 
 # Define love story questions
 story_questions = [
