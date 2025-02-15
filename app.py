@@ -286,10 +286,10 @@ story_questions = [
     ("How do you handle challenges in your relationship?", ["Together, as a team", "It’s tough, but we try"]),
 ]
 
-# Create a tab for Love Story Compatibility
-with st.container():
-    st.header("💖 Love Story Compatibility")
-    st.markdown(
+    # Create a tab for Love Story Compatibility
+    with st.container():
+        st.header("💖 Love Story Compatibility")
+        st.markdown(
         """
         Find out how compatible you are with your partner based on your love story.
         Answer the following questions and let's calculate your compatibility score!
