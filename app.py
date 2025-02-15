@@ -1,27 +1,34 @@
 import streamlit as st
 import random
-import cv2
-import numpy as np
+import os
+import requests
 from textblob import TextBlob
-from transformers import pipeline
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
 
-# Load the AI Love Story Generator Model (Replace with API-based approach if needed)
+# Get Hugging Face API key from environment variable
+API_KEY = os.getenv("HUGGINGFACE_API_KEY")
+
+# Function: Generate AI Love Story using Hugging Face API
 def generate_ai_love_story(names, place, event, memory):
-    tokenizer = AutoTokenizer.from_pretrained("facebook/opt-1.3b")
-    model = AutoModelForCausalLM.from_pretrained("facebook/opt-1.3b")
-    
+    if not API_KEY:
+        return "API key is missing. Please configure it in your environment variables."
+
     prompt = (f"Write a romantic love story about {names}. "
               f"They met at {place}, and their most memorable moment was {memory}. "
               f"The event that brought them closer was {event}. "
               f"Make the story emotional, heartwarming, and magical.")
-    
-    inputs = tokenizer(prompt, return_tensors="pt")
-    outputs = model.generate(**inputs, max_length=250, temperature=0.7, do_sample=True)
-    story = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    
-    return story
+
+    headers = {"Authorization": f"Bearer {API_KEY}"}
+    payload = {"inputs": prompt, "parameters": {"max_length": 250, "temperature": 0.7}}
+
+    response = requests.post(
+        "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct",
+        headers=headers, json=payload
+    )
+
+    if response.status_code == 200:
+        return response.json()[0]["generated_text"].strip()
+    else:
+        return f"Error: {response.status_code} - {response.text}"
 
 # Function: Love Compatibility Score
 def calculate_love(name1, name2, birth1, birth2):
@@ -86,7 +93,7 @@ def daily_love_challenge():
 st.title("💖 AI Love Calculator & Fun Games 💖")
 
 # Create Tabs
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "Love Score 💕", "Love Advice 💌", "Mini Games 🎮", 
     "Love Story 📖", "Chat Analysis 💬", 
     "Zodiac Match ✨", "Love Challenge 🎯"
@@ -143,8 +150,10 @@ with tab5:
 # ---- TAB 6: Zodiac Compatibility ----
 with tab6:
     st.header("✨ Zodiac Love Match")
+    zodiac1 = st.selectbox("Select Your Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"])
+    zodiac2 = st.selectbox("Select Partner's Zodiac Sign", ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"])
     if st.button("Check Zodiac Compatibility 🌟"):
-        st.success(zodiac_match("Aries", "Libra"))
+        st.success(zodiac_match(zodiac1, zodiac2))
 
 # ---- TAB 7: Daily Love Challenge ----
 with tab7:
