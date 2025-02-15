@@ -5,12 +5,10 @@ import requests
 from textblob import TextBlob
 from transformers import AutoTokenizer
 
-
 # Get Hugging Face API key from environment variable
 API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
 # Function: Generate AI Love Story using Hugging Face API
-# Function: Generate AI Love Story using Falcon-7B
 def generate_ai_love_story(names, place, event, memory):
     api_key = st.secrets["HUGGINGFACE_TOKEN"]  # Fetch API key from Streamlit secrets
     api_url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
@@ -25,14 +23,13 @@ def generate_ai_love_story(names, place, event, memory):
               f"Make the love story vivid, passionate, and real.")
 
     payload = {
-    "inputs": prompt, 
-    "parameters": {
-        "max_length": 500, 
-        "temperature": 0.7, 
-        "top_k": 50
+        "inputs": prompt, 
+        "parameters": {
+            "max_length": 500, 
+            "temperature": 0.7, 
+            "top_k": 50
+        }
     }
-}
-
 
     try:
         response = requests.post(api_url, headers=headers, json=payload, timeout=10)
@@ -45,7 +42,6 @@ def generate_ai_love_story(names, place, event, memory):
         return f"Error: An issue occurred while contacting the model ({str(e)})."
     except (KeyError, IndexError):
         return "Error: Unexpected response format from the AI model."
-
 
 
 # Function: Love Compatibility Score
@@ -132,10 +128,14 @@ st.markdown(
     .stApp {{
         background: transparent;
     }}
+    h1, h2, h3, h4, h5, h6 {{
+        font-weight: bold !important;
+    }}
     </style>
     """, 
     unsafe_allow_html=True
 )
+
 # Create Tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "Love Score 💕", "Love Advice 💌", "Mini Games 🎮", 
@@ -202,5 +202,6 @@ with tab6:
 # ---- TAB 7: Daily Love Challenge ----
 with tab7:
     st.header("💖 Love Challenge of the Day")
-    if st.button("Get Today's Challenge 🎯", key="love_challenge_btn"):
-        st.info(daily_love_challenge())
+    if st.button("Get Daily Love Challenge 🎯", key="love_challenge_btn"):
+        challenge = daily_love_challenge()
+        st.info(challenge)
