@@ -108,7 +108,8 @@ def daily_love_challenge():
     return random.choice(challenges)
 
 # Streamlit Web App
-st.title("💖 AI Love Calculator & Fun Games 💖")
+st.title("💖✨  HeartTales : Where Love Stories Begin ✨💖")
+st.markdown("#### *Every love story deserves to be told.*")
 
 # Create Tabs
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
