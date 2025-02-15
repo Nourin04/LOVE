@@ -350,4 +350,21 @@ with tab9:
         st.info(challenge)
 
 
+st.markdown(
+    """
+    <style>
+    .streamlit-expanderHeader {
+        font-size: 20px !important;
+    }
+    .tab {
+        font-size: 20px !important;
+    }
+    .css-1lcb2zz {
+        font-size: 20px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True
+)
+
+
 
