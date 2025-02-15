@@ -136,11 +136,10 @@ st.markdown(
     }}
     h1, h2, h3, h4, h5, h6 {{
         font-weight: bold !important;
-        color: #ffffff !important;  /* White text for better visibility */
+        
     }}
     .stButton {{
-        background-color: #FF3366;  /* Button background color */
-        color: white;
+    /* Button background color */
         font-weight: bold;
     }}
     </style>
