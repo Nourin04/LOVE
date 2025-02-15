@@ -122,10 +122,10 @@ st.markdown(
     <style>
     body {{
         background-image: url({background_image_url});
-        background-size: contain;  /* Avoid stretching by using 'contain' */
-        background-position: center center;
-        background-repeat: no-repeat;
-        min-height: 100vh;
+        background-size: cover;  /* Stretch the image to cover full size */
+        background-position: center center;  /* Center the image */
+        background-repeat: no-repeat;  /* Prevent repetition */
+        min-height: 100vh;  /* Ensure full height of the screen */
         margin: 0;
         padding: 0;
     }}
